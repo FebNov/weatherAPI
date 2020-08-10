@@ -8,13 +8,7 @@ WeatherData
   windDirection string -----wind.deg
 
 ForecastData
-  minCelsius number
-  maxCelsius number
-  minFahrenheit number
-  maxFahrenheit number
-  humidity number
-  windSpeed number
-  windDirection string
+extends from WeatherData
   time number -----dt
 
 CityData
