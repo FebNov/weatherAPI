@@ -3,17 +3,16 @@ const validateId = require("../middleware/validateId");
 const router = express.Router();
 
 const {
-  addPost,
-  getAllPost,
-  getPostById,
-  updatePostById,
-  deletePostById,
+  getCurrentWeatherData,
+  getCityInfo,
+  getForecastWeatherData,
+  //function from the weather.js
 } = require("../controllers/weather");
 const { Router } = require("express");
-router.get("", getAllPost);
-router.post("", addPost);
-router.get("/id", validateId, getPostById);
-router.put("id", validateId, updatePostById);
-router.delete("/id", validateId, deletePostById);
+
+router.get("", getCurrentWeatherData);
+router.get("", getCityInfo);
+router.get("", getForecastWeatherData);
+//router.get("/id", validateId, getPostById);
 
 module.exports = router;
