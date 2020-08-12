@@ -8,6 +8,12 @@ const forecastWeather = require("./forecastWeather");
 const instance = axios.create({
   baseURL: "http://api.openweathermap.org/data/2.5",
 });
+
+function filterDataByClass(allInfo) {
+  const allInfoData
+  return allInfoData
+}
+
 /*
 Promise.all([
   instance
@@ -38,21 +44,37 @@ Promise.all([
   console.log(res);
 });
 */
-function getInfo(cityName, countryCode) {
+function getInfoByCityName(cityName, countryCode) {
   const reqCity = `${cityName},${countryCode}`;
-  instance
+  const appid = "ada4e4cd17a1537327fe70dc3fd9a8f9";
+  const unit= "metric"
+  Promise.all([
+    instance
     .get("weather", {
       params: {
         q: reqCity,
-        units: "metric",
-        APPID: "ada4e4cd17a1537327fe70dc3fd9a8f9",
+        units: unit,
+        APPID: appid,
       },
     })
-    .then((Info) => {
-      return Info;
-    });
-}
+    .then((CurrentInfo) => {
+      return CurrentInfo;
+    }),
+  instance
+  .get("forscast", {
+    params: {
+      q: reqCity,
+      units: unit,
+      APPID: appid,
+    },
+  })
+  .then((forscastInfo) => {
+    return forscastInfo;
+  }),
+])
+.then(allInfo =>{
+  return allInfo;
+})
+  
 
-module.exports = {
-  getInfo,
-};
+module.exports = {filterDataByClass};

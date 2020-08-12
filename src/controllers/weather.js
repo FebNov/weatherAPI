@@ -1,5 +1,5 @@
 const weatherModel = require("../models/weather");
-
+/*
 function getCityInfo(req, res) {
   const { city, countryCode } = req.params;
   const cityInfo = weatherModel.getCityInfo(city, countryCode).then((res) => {
