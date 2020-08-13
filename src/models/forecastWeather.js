@@ -4,7 +4,7 @@ extends from WeatherData
 const currentWeather = require("./currentWeather");
 class forecastWeather extends currentWeather {
   constructor(data) {
-    super(data) = data;
+    super(data);
     this.time = data.dt;
   }
 }

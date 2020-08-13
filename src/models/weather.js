@@ -18,8 +18,10 @@ function filterDataByClass(allInfo) {
   const rawData = allInfo[0].data;
   const cityInfo = new city(rawData);
   const currentWeatherInfo = new currentWeather(rawData);
-  //const rawForecastData = allInfo[1].data;
-  //const forecastWeatherInfo = new forecastWeather(rawForecastData);
+  // const rawForecastData = allInfo[1].data;
+  //// console.log(rawForecastData);
+  // const forecastWeatherInfo = new forecastWeather(rawForecastData);
+  /// console.log(forecastWeatherInfo);
   return { cityInfo, currentWeatherInfo };
 }
 function getCurrentWeather() {
@@ -50,11 +52,15 @@ function getForecastWeather() {
       },
     })
     .then((res) => {
-      //  const listtry = res.data.list[5];
-      const tmrData = res.data;
-      const forecastWeatherInfo = new forecastWeather(tmrData);
+      //  const listtry = res.data.list[5]
+      const list = res.data.list;
+      let try1 = {};
+      try1 = list;
+      console.log(try1[0]);
+      const forecastWeatherInfo = new forecastWeather(try1[0]);
       console.log(forecastWeatherInfo);
-      return tmrData;
+      return try1;
+      //  console.log(list);
     });
 }
 
