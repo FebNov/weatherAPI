@@ -1,5 +1,5 @@
 const express = require("express");
 const weatherRouter = require("./routes/weather");
 const router = express.Router();
-router.use("", weatherRouter);
+router.use("/try", weatherRouter);
 module.exports = router;
