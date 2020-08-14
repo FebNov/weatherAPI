@@ -55,7 +55,7 @@ function getForecastWeather(cityName, countryCode) {
 }
 
 function getInfoByCityName(cityName, countryCode) {
-  Promise.all([
+  return Promise.all([
     getCurrentWeather(cityName, countryCode),
     getForecastWeather(cityName, countryCode),
   ]).then((res) => {
