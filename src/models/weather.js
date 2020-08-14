@@ -8,7 +8,7 @@ const { request } = require("express");
 //app.use(routes);
 const unit = "metric";
 const appid = "ada4e4cd17a1537327fe70dc3fd9a8f9";
-const reqCity = "Brisbane,au";
+//const reqCity = "Brisbane,au";
 
 const instance = axios.create({
   baseURL: "http://api.openweathermap.org/data/2.5",
@@ -30,8 +30,8 @@ function filterDataByClass(allInfo) {
   // console.log(forecastWeatherInfo);
   return { cityInfo, currentWeatherInfo, forecastWeatherInfo };
 }
-function getCurrentWeather() {
-  // const reqCity = `${cityName},${countryCode}`;
+function getCurrentWeather(cityName, countryCode) {
+  const reqCity = `${cityName},${countryCode}`;
   return instance.get("/weather", {
     params: {
       q: reqCity,
@@ -40,9 +40,9 @@ function getCurrentWeather() {
     },
   });
 }
-function getForecastWeather() {
+function getForecastWeather(cityName, countryCode) {
   //api.openweathermap.org/data/2.5/forecast/daily?q={city name}&cnt={cnt}&appid={your api key}
-  //const reqCity = `${cityName},${countryCode}`;
+  const reqCity = `${cityName},${countryCode}`;
   const cnt = 1;
   return instance.get("/forecast", {
     params: {
@@ -54,13 +54,16 @@ function getForecastWeather() {
   });
 }
 
-function getInfoByCityName() {
-  Promise.all([getCurrentWeather(), getForecastWeather()]).then((res) => {
+function getInfoByCityName(cityName, countryCode) {
+  Promise.all([
+    getCurrentWeather(cityName, countryCode),
+    getForecastWeather(cityName, countryCode),
+  ]).then((res) => {
     const finalInfo = filterDataByClass(res);
     //  const rawForecastDataList = res[1].data.list((listItem) => {
     //     new forecastWeather(rawForecastData);
     //    });
-    console.log(finalInfo);
+    //console.log(finalInfo);
     return finalInfo;
   });
 }

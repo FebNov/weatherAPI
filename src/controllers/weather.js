@@ -1,17 +1,10 @@
 const weatherModel = require("../models/weather");
 
 function getInfoByCityName(req, res) {
-  /* const { city, countryCode } = req.params;
-  const cityInfo = weatherModel
-    .getInfoByCityName(city, countryCode)
-    .then((res) => {
-      return res.json(cityInfo);
-    });
-}   
-*/
-  
-  const try1try = weatherModel.getInfoByCityName();
-  return res.json(try1try);
+  const { city, countryCode } = req.query;
+  const info = weatherModel.getInfoByCityName(city, countryCode);
+  console.log(res.json(info));
+  return res.json(info);
 }
 module.exports = {
   getInfoByCityName,
