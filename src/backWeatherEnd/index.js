@@ -3,9 +3,12 @@ const app = express();
 
 const routes = require("./router");
 
+app.listen(port);
 app.use(express.json());
 
 app.use(routes);
-app.listen(3000, () => {
-  console.log("Listen Port 3000");
-});
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
